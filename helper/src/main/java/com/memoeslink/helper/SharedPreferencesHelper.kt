@@ -11,7 +11,7 @@ class SharedPreferencesHelper : ContextWrapper {
     private val editor: SharedPreferences.Editor
 
     constructor(context: Context?) : super(context) {
-        preferences = PreferenceManager.getDefaultSharedPreferences(context)
+        preferences = PreferenceManager.getDefaultSharedPreferences(context!!)
         editor = preferences.edit()
     }
 
