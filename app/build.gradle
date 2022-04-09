@@ -1,8 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'maven-publish'
+    id 'kotlin-android'
 }
-apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 31

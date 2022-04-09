@@ -1,10 +1,10 @@
 plugins {
     id 'com.android.library'
     id 'maven-publish'
+    id 'kotlin-android'
 }
-apply plugin: 'kotlin-android'
 
-def currentVersionName = "2022.0.1"
+def currentVersionName = "2022.0.2"
 
 afterEvaluate {
     publishing {

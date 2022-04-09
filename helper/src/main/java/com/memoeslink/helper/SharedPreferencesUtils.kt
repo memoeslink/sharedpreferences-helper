@@ -1,6 +1,7 @@
 package com.memoeslink.helper
 
-fun SharedPreferencesHelper.removeTemp(): Boolean = removePrefsByCategory(SharedPreferencesCategory.TEMP)
+fun SharedPreferencesHelper.removeTemp(): Boolean =
+    removePrefsByCategory(SharedPreferencesCategory.TEMP)
 
 fun SharedPreferencesHelper.removePrefsByCategory(category: SharedPreferencesCategory?): Boolean {
     var preferenceDeleted = false

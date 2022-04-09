@@ -22,7 +22,8 @@ class SharedPreferencesHelper : ContextWrapper {
 
     fun getBoolean(key: String?): Boolean = preferences.getBoolean(key, DEFAULT_BOOLEAN)
 
-    fun getBoolean(key: String?, defaultValue: Boolean): Boolean = preferences.getBoolean(key, defaultValue)
+    fun getBoolean(key: String?, defaultValue: Boolean): Boolean =
+        preferences.getBoolean(key, defaultValue)
 
     fun getBooleanOrNull(key: String?): Boolean? = if (contains(key)) getBoolean(key) else null
 
@@ -62,7 +63,8 @@ class SharedPreferencesHelper : ContextWrapper {
 
     fun getString(key: String?): String? = preferences.getString(key, DEFAULT_STRING)
 
-    fun getString(key: String?, defaultValue: String?): String? = preferences.getString(key, defaultValue)
+    fun getString(key: String?, defaultValue: String?): String? =
+        preferences.getString(key, defaultValue)
 
     fun getStringOrNull(key: String?): String? = if (contains(key)) getString(key) else null
 
@@ -84,15 +86,20 @@ class SharedPreferencesHelper : ContextWrapper {
 
     fun putStringSafely(key: String?, value: String?) = editor.putString(key, value).apply()
 
-    fun getStringSet(key: String?): Set<String>? = preferences.getStringSet(key, DEFAULT_STRING_SET)
+    fun getStringSet(key: String?): Set<String> =
+        preferences.getStringSet(key, DEFAULT_STRING_SET) ?: DEFAULT_STRING_SET
 
-    fun getStringSet(key: String?, defaultValue: Set<String?>?): Set<String>? = preferences.getStringSet(key, defaultValue)
+    fun getStringSet(key: String?, defaultValue: Set<String?>?): Set<String> =
+        preferences.getStringSet(key, defaultValue) ?: DEFAULT_STRING_SET
 
-    fun getStringSetOrNull(key: String?): Set<String>? = if (contains(key)) getStringSet(key) else null
+    fun getStringSetOrNull(key: String?): Set<String>? =
+        if (contains(key)) getStringSet(key) else null
 
-    fun putStringSet(key: String?, value: Set<String?>?): Boolean = editor.putStringSet(key, value).commit()
+    fun putStringSet(key: String?, value: Set<String?>?): Boolean =
+        editor.putStringSet(key, value).commit()
 
-    fun putStringSetSafely(key: String?, value: Set<String?>?) = editor.putStringSet(key, value).apply()
+    fun putStringSetSafely(key: String?, value: Set<String?>?) =
+        editor.putStringSet(key, value).apply()
 
     fun getAll(): Map<String, *> = preferences.all
 
