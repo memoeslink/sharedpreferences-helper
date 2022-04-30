@@ -27,9 +27,13 @@ class SharedPreferencesHelper : ContextWrapper {
 
     fun getBooleanOrNull(key: String?): Boolean? = if (contains(key)) getBoolean(key) else null
 
+    fun put(key: String?, value: Boolean): Boolean = putBoolean(key, value)
+
     fun putBoolean(key: String?, value: Boolean): Boolean = editor.putBoolean(key, value).commit()
 
-    fun putBooleanSafely(key: String?, value: Boolean) = editor.putBoolean(key, value).apply()
+    fun apply(key: String?, value: Boolean) = applyBoolean(key, value)
+
+    fun applyBoolean(key: String?, value: Boolean) = editor.putBoolean(key, value).apply()
 
     fun getFloat(key: String?): Float = preferences.getFloat(key, DEFAULT_FLOAT)
 
@@ -37,9 +41,13 @@ class SharedPreferencesHelper : ContextWrapper {
 
     fun getFloatOrNull(key: String?): Float? = if (contains(key)) getFloat(key) else null
 
+    fun put(key: String?, value: Float): Boolean = putFloat(key, value)
+
     fun putFloat(key: String?, value: Float): Boolean = editor.putFloat(key, value).commit()
 
-    fun putFloatSafely(key: String?, value: Float) = editor.putFloat(key, value).apply()
+    fun apply(key: String?, value: Float) = applyFloat(key, value)
+
+    fun applyFloat(key: String?, value: Float) = editor.putFloat(key, value).apply()
 
     fun getInt(key: String?): Int = preferences.getInt(key, DEFAULT_INTEGER)
 
@@ -47,9 +55,13 @@ class SharedPreferencesHelper : ContextWrapper {
 
     fun getIntOrNull(key: String?): Int? = if (contains(key)) getInt(key) else null
 
+    fun put(key: String?, value: Int): Boolean = putInt(key, value)
+
     fun putInt(key: String?, value: Int): Boolean = editor.putInt(key, value).commit()
 
-    fun putIntSafely(key: String?, value: Int) = editor.putInt(key, value).apply()
+    fun apply(key: String?, value: Int) = applyInt(key, value)
+
+    fun applyInt(key: String?, value: Int) = editor.putInt(key, value).apply()
 
     fun getLong(key: String?): Long = preferences.getLong(key, DEFAULT_LONG)
 
@@ -57,9 +69,13 @@ class SharedPreferencesHelper : ContextWrapper {
 
     fun getLongOrNull(key: String?): Long? = if (contains(key)) getLong(key) else null
 
+    fun put(key: String?, value: Long): Boolean = putLong(key, value)
+
     fun putLong(key: String?, value: Long): Boolean = editor.putLong(key, value).commit()
 
-    fun putLongSafely(key: String?, value: Long) = editor.putLong(key, value).apply()
+    fun apply(key: String?, value: Long) = applyLong(key, value)
+
+    fun applyLong(key: String?, value: Long) = editor.putLong(key, value).apply()
 
     fun getString(key: String?): String? = preferences.getString(key, DEFAULT_STRING)
 
@@ -82,9 +98,13 @@ class SharedPreferencesHelper : ContextWrapper {
 
     fun getStringAsIntOrNull(key: String?): Int? = if (contains(key)) getStringAsInt(key) else null
 
+    fun put(key: String?, value: String?): Boolean = putString(key, value)
+
     fun putString(key: String?, value: String?): Boolean = editor.putString(key, value).commit()
 
-    fun putStringSafely(key: String?, value: String?) = editor.putString(key, value).apply()
+    fun apply(key: String?, value: String?) = applyString(key, value)
+
+    fun applyString(key: String?, value: String?) = editor.putString(key, value).apply()
 
     fun getStringSet(key: String?): Set<String> =
         preferences.getStringSet(key, DEFAULT_STRING_SET) ?: DEFAULT_STRING_SET
@@ -95,11 +115,27 @@ class SharedPreferencesHelper : ContextWrapper {
     fun getStringSetOrNull(key: String?): Set<String>? =
         if (contains(key)) getStringSet(key) else null
 
+    fun put(key: String?, value: Set<String?>?): Boolean = putStringSet(key, value)
+
     fun putStringSet(key: String?, value: Set<String?>?): Boolean =
         editor.putStringSet(key, value).commit()
 
-    fun putStringSetSafely(key: String?, value: Set<String?>?) =
+    fun apply(key: String?, value: Set<String?>?) = applyStringSet(key, value)
+
+    fun applyStringSet(key: String?, value: Set<String?>?) =
         editor.putStringSet(key, value).apply()
+
+    fun get(key: String?, defaultValue: Any?): Any? {
+        return when (defaultValue) {
+            is String -> getString(key, defaultValue)
+            is Int -> getInt(key, defaultValue)
+            is Boolean -> getBoolean(key, defaultValue)
+            is Float -> getFloat(key, defaultValue)
+            is Long -> getLong(key, defaultValue)
+            is Set<*> -> getStringSet(key, defaultValue as Set<String?>)
+            else -> null
+        }
+    }
 
     fun getAll(): Map<String, *> = preferences.all
 
