@@ -31,9 +31,9 @@ class SharedPreferencesHelper : ContextWrapper {
 
     fun putBoolean(key: String?, value: Boolean): Boolean = editor.putBoolean(key, value).commit()
 
-    fun apply(key: String?, value: Boolean) = applyBoolean(key, value)
+    fun save(key: String?, value: Boolean) = saveBoolean(key, value)
 
-    fun applyBoolean(key: String?, value: Boolean) = editor.putBoolean(key, value).apply()
+    fun saveBoolean(key: String?, value: Boolean) = editor.putBoolean(key, value).apply()
 
     fun getFloat(key: String?): Float = preferences.getFloat(key, DEFAULT_FLOAT)
 
@@ -45,9 +45,9 @@ class SharedPreferencesHelper : ContextWrapper {
 
     fun putFloat(key: String?, value: Float): Boolean = editor.putFloat(key, value).commit()
 
-    fun apply(key: String?, value: Float) = applyFloat(key, value)
+    fun save(key: String?, value: Float) = saveFloat(key, value)
 
-    fun applyFloat(key: String?, value: Float) = editor.putFloat(key, value).apply()
+    fun saveFloat(key: String?, value: Float) = editor.putFloat(key, value).apply()
 
     fun getInt(key: String?): Int = preferences.getInt(key, DEFAULT_INTEGER)
 
@@ -59,9 +59,9 @@ class SharedPreferencesHelper : ContextWrapper {
 
     fun putInt(key: String?, value: Int): Boolean = editor.putInt(key, value).commit()
 
-    fun apply(key: String?, value: Int) = applyInt(key, value)
+    fun save(key: String?, value: Int) = saveInt(key, value)
 
-    fun applyInt(key: String?, value: Int) = editor.putInt(key, value).apply()
+    fun saveInt(key: String?, value: Int) = editor.putInt(key, value).apply()
 
     fun getLong(key: String?): Long = preferences.getLong(key, DEFAULT_LONG)
 
@@ -73,9 +73,9 @@ class SharedPreferencesHelper : ContextWrapper {
 
     fun putLong(key: String?, value: Long): Boolean = editor.putLong(key, value).commit()
 
-    fun apply(key: String?, value: Long) = applyLong(key, value)
+    fun save(key: String?, value: Long) = saveLong(key, value)
 
-    fun applyLong(key: String?, value: Long) = editor.putLong(key, value).apply()
+    fun saveLong(key: String?, value: Long) = editor.putLong(key, value).apply()
 
     fun getString(key: String?): String? = preferences.getString(key, DEFAULT_STRING)
 
@@ -102,9 +102,9 @@ class SharedPreferencesHelper : ContextWrapper {
 
     fun putString(key: String?, value: String?): Boolean = editor.putString(key, value).commit()
 
-    fun apply(key: String?, value: String?) = applyString(key, value)
+    fun save(key: String?, value: String?) = saveString(key, value)
 
-    fun applyString(key: String?, value: String?) = editor.putString(key, value).apply()
+    fun saveString(key: String?, value: String?) = editor.putString(key, value).apply()
 
     fun getStringSet(key: String?): Set<String> =
         preferences.getStringSet(key, DEFAULT_STRING_SET) ?: DEFAULT_STRING_SET
@@ -120,9 +120,9 @@ class SharedPreferencesHelper : ContextWrapper {
     fun putStringSet(key: String?, value: Set<String?>?): Boolean =
         editor.putStringSet(key, value).commit()
 
-    fun apply(key: String?, value: Set<String?>?) = applyStringSet(key, value)
+    fun save(key: String?, value: Set<String?>?) = saveStringSet(key, value)
 
-    fun applyStringSet(key: String?, value: Set<String?>?) =
+    fun saveStringSet(key: String?, value: Set<String?>?) =
         editor.putStringSet(key, value).apply()
 
     fun get(key: String?, defaultValue: Any?): Any? {
