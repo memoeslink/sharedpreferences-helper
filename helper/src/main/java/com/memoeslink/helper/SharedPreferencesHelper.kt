@@ -165,13 +165,13 @@ open class SharedPreferencesHelper : ContextWrapper {
     }
 
     companion object {
-        private const val PREFERENCES = "prefs"
-        private const val DEFAULT_BOOLEAN = false
-        private const val DEFAULT_FLOAT = 0F
-        private const val DEFAULT_INTEGER = 0
-        private const val DEFAULT_LONG = 0L
-        private const val DEFAULT_STRING = ""
-        private val DEFAULT_STRING_SET = emptySet<String>()
+        @JvmStatic val PREFERENCES = "prefs"
+        @JvmStatic val DEFAULT_BOOLEAN = false
+        @JvmStatic val DEFAULT_FLOAT = 0F
+        @JvmStatic val DEFAULT_INTEGER = 0
+        @JvmStatic val DEFAULT_LONG = 0L
+        @JvmStatic val DEFAULT_STRING = ""
+        @JvmStatic val DEFAULT_STRING_SET = emptySet<String>()
 
         fun getPreferencesHelper(context: Context?): SharedPreferencesHelper {
             return SharedPreferencesHelper(context, PREFERENCES)
