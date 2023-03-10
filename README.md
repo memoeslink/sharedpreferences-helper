@@ -6,4 +6,4 @@ An Android library to have a better management of SharedPreferences.
 
 To use this library, include this line of code in your build.gradle:
 
-implementation 'com.github.memoeslink.sharedpreferences-helper:final:2022.1.2'
+implementation 'com.github.memoeslink.sharedpreferences-helper:final:2023.0.0'
