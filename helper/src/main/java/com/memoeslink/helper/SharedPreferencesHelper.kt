@@ -142,6 +142,30 @@ open class SharedPreferencesHelper : ContextWrapper {
         }
     }
 
+    open fun put(key: String?, value: Any?): Boolean {
+        return when (value) {
+            is String -> putString(key, value)
+            is Int -> putInt(key, value)
+            is Boolean -> putBoolean(key, value)
+            is Float -> putFloat(key, value)
+            is Long -> putLong(key, value)
+            is Set<*> -> putStringSet(key, value as Set<String?>)
+            else -> false
+        }
+    }
+
+    open fun save(key: String?, value: Any?) {
+        when (value) {
+            is String -> saveString(key, value)
+            is Int -> saveInt(key, value)
+            is Boolean -> saveBoolean(key, value)
+            is Float -> saveFloat(key, value)
+            is Long -> saveLong(key, value)
+            is Set<*> -> saveStringSet(key, value as Set<String?>)
+            else -> {}
+        }
+    }
+
     open fun getAll(): Map<String, *> = preferences.all
 
     open fun contains(key: String?): Boolean = preferences.contains(key)
@@ -165,13 +189,26 @@ open class SharedPreferencesHelper : ContextWrapper {
     }
 
     companion object {
-        @JvmStatic val PREFERENCES = "prefs"
-        @JvmStatic val DEFAULT_BOOLEAN = false
-        @JvmStatic val DEFAULT_FLOAT = 0F
-        @JvmStatic val DEFAULT_INTEGER = 0
-        @JvmStatic val DEFAULT_LONG = 0L
-        @JvmStatic val DEFAULT_STRING = ""
-        @JvmStatic val DEFAULT_STRING_SET = emptySet<String>()
+        @JvmStatic
+        val PREFERENCES = "prefs"
+
+        @JvmStatic
+        val DEFAULT_BOOLEAN = false
+
+        @JvmStatic
+        val DEFAULT_FLOAT = 0F
+
+        @JvmStatic
+        val DEFAULT_INTEGER = 0
+
+        @JvmStatic
+        val DEFAULT_LONG = 0L
+
+        @JvmStatic
+        val DEFAULT_STRING = ""
+
+        @JvmStatic
+        val DEFAULT_STRING_SET = emptySet<String>()
 
         fun getPreferencesHelper(context: Context?): SharedPreferencesHelper {
             return SharedPreferencesHelper(context, PREFERENCES)
