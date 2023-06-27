@@ -4,9 +4,8 @@ fun SharedPreferencesHelper.removeTemp(): Boolean =
     removePrefsByCategory(SharedPreferencesCategory.TEMP)
 
 fun SharedPreferencesHelper.removePrefsByCategory(category: SharedPreferencesCategory?): Boolean {
+    if (category == null) return false
     var preferenceDeleted = false
-
-    if (category == null) return preferenceDeleted
 
     for (key in getAll().keys) {
         if (key.startsWith(category.prefix)) {

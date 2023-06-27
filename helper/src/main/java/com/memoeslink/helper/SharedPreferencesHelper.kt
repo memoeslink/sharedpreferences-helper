@@ -93,7 +93,7 @@ open class SharedPreferencesHelper : ContextWrapper {
         getString(key)?.let { s ->
             try {
                 return Integer.parseInt(s)
-            } catch (e: NumberFormatException) {
+            } catch (_: NumberFormatException) {
             }
         }
         return defaultValue
